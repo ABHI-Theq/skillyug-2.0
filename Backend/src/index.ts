@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import DBConnect from "./utils/DBConnect"
 import Razorpay from "razorpay"
 import router from "./router/paymentRouter"
+import cors from "cors"
 dotenv.config()
 DBConnect()
 
@@ -14,6 +15,7 @@ export const instance=new Razorpay({
 const app=express()
 
 app.use(express.json())
+app.use(cors())
 app.use(urlencoded({extended:true}))
 app.use(express.static("public"))
 app.use("/api",router)

@@ -38,7 +38,7 @@ export const paymentVerification=async(req:Request,res:Response)=>{
             razorpay_signature:razorpay_signature
         })
         res.redirect(
-            `http://localhost:3000/paymentsuccess?reference=${razorpay_payment_id}`
+            `http://localhost:5173/paymentsuccess?reference=${razorpay_payment_id}` //replace with your frontend url 
           );
     }else{
         res.status(400).json({

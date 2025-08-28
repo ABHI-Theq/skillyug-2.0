@@ -49,6 +49,15 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            <Link
+              to={"/demo-course"}
+              className={`flex items-center justify-center px-4 font-serif py-2 rounded-md text-sm font-medium transition-colors duration-200 ${location.pathname === "/demo-course"
+                ? 'text-orange-500 bg-blue-900/50'
+                : 'text-gray-300 hover:text-white hover:bg-blue-800/50'
+              }`}
+            >
+              Demo Course
+            </Link>
             {user && dashboardRoute && (
               <Link
                 to={dashboardRoute}
@@ -110,6 +119,16 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
+              <Link
+                to={"/demo-course"}
+                onClick={() => setIsOpen(false)}
+                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${location.pathname === "/demo-course"
+                  ? 'text-orange-500 bg-blue-900/50'
+                  : 'text-gray-300 hover:text-white hover:bg-blue-800/50'
+                }`}
+              >
+                Demo Course
+              </Link>
               {user && dashboardRoute && (
                 <Link
                   to={dashboardRoute}
