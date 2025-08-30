@@ -128,7 +128,7 @@ const Courses = () => {
                 <button 
                 onClick={() => navigate(`/course/${course._id}`)}
                 className="w-full py-3 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-colors duration-200">
-                  Enroll Now
+                  Course Details
                 </button>
               </div>
             </div>
