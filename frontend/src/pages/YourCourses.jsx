@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import {useAuth} from "../hooks/AuthContext";
 import usePurchase from "../hooks/usePurchase";
 import { BookOpen, Users, Clock, Star } from "lucide-react";
 
 function YourCourses() {
-  const supabase = useSupabaseClient();
   const { getUserPurchases, loading, error } = usePurchase();
   const [purchasedCourses, setPurchasedCourses] = useState([]);
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ function YourCourses() {
   useEffect(() => {
     const fetchPurchases = async () => {
       // ✅ Get logged-in user from Supabase
-      const { data: { user } } = await supabase.auth.getUser();
+      const {user} = useAuth();
       if (!user) return;
 
       // ✅ Fetch purchases from backend
