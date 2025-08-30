@@ -4,6 +4,8 @@ import DBConnect from "./utils/DBConnect"
 import Razorpay from "razorpay"
 import router from "./router/paymentRouter"
 import cors from "cors"
+import courseRouter from "./router/CourseRouter"
+import userPurchaseRouter from "./router/userPurchasesRoutes"
 dotenv.config()
 DBConnect()
 
@@ -19,6 +21,8 @@ app.use(cors())
 app.use(urlencoded({extended:true}))
 app.use(express.static("public"))
 app.use("/api",router)
+app.use("/api/courses",courseRouter)
+app.use("/api/purchase",userPurchaseRouter)
 app.get('/api/getKey', (req, res) => {
     // Ensure the environment variable is loaded
     if (!process.env.RAZORPAY_KEY) {

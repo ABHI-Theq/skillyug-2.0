@@ -1,97 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Filter, Clock, Users, Star, BookOpen } from 'lucide-react';
+import useCourse from '../hooks/useCourse'; // adjust path to your hook
+import { useNavigate } from 'react-router-dom';
 
 const Courses = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const { courses, loading, error, fetchCourses } = useCourse();
+  const navigate = useNavigate();
 
   const categories = [
     { id: 'all', name: 'All Courses' },
     { id: 'programming', name: 'Programming' },
-    { id: 'design', name: 'Design' },
-    { id: 'marketing', name: 'Marketing' },
+    { id: 'development', name: 'Development' },
+    { id: 'devops', name: 'Devops' },
     { id: 'business', name: 'Business' }
   ];
 
-  const courses = [
-    {
-      id: 1,
-      title: 'Complete React Development Course',
-      instructor: 'John Smith',
-      rating: 4.8,
-      students: 2341,
-      duration: '40 hours',
-      price: '$89',
-      image: 'https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=400',
-      category: 'programming',
-      level: 'Intermediate'
-    },
-    {
-      id: 2,
-      title: 'Python for Data Science',
-      instructor: 'Sarah Johnson',
-      rating: 4.9,
-      students: 1876,
-      duration: '35 hours',
-      price: '$79',
-      image: 'https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=400',
-      category: 'programming',
-      level: 'Beginner'
-    },
-    {
-      id: 3,
-      title: 'UI/UX Design Masterclass',
-      instructor: 'Mike Davis',
-      rating: 4.7,
-      students: 3245,
-      duration: '28 hours',
-      price: '$99',
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=400',
-      category: 'design',
-      level: 'Intermediate'
-    },
-    {
-      id: 4,
-      title: 'Digital Marketing Strategy',
-      instructor: 'Emily Brown',
-      rating: 4.6,
-      students: 1654,
-      duration: '25 hours',
-      price: '$69',
-      image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=400',
-      category: 'marketing',
-      level: 'Beginner'
-    },
-    {
-      id: 5,
-      title: 'Business Leadership',
-      instructor: 'David Wilson',
-      rating: 4.5,
-      students: 987,
-      duration: '20 hours',
-      price: '$59',
-      image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=400',
-      category: 'business',
-      level: 'Advanced'
-    },
-    {
-      id: 6,
-      title: 'Full Stack Web Development',
-      instructor: 'Alex Chen',
-      rating: 4.8,
-      students: 2890,
-      duration: '60 hours',
-      price: '$129',
-      image: 'https://images.pexels.com/photos/11035471/pexels-photo-11035471.jpeg?auto=compress&cs=tinysrgb&w=400',
-      category: 'programming',
-      level: 'Advanced'
-    }
-  ];
+  // Fetch courses when component mounts
+  useEffect(() => {
+    fetchCourses();
+  }, []);
 
+  // Apply search + category filter
   const filteredCourses = courses.filter(course => {
-    const matchesSearch = course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         course.instructor.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || course.category === selectedCategory;
+    const matchesSearch =
+      course.course_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      course.instructor?.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesCategory =
+      selectedCategory === 'all' || course.category === selectedCategory;
+
     return matchesSearch && matchesCategory;
   });
 
@@ -141,45 +80,54 @@ const Courses = () => {
           </div>
         </div>
 
+        {/* Loading & Error States */}
+        {loading && <p className="text-center text-gray-400">Loading courses...</p>}
+        {error && <p className="text-center text-red-500">{error}</p>}
+
         {/* Course Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredCourses.map((course) => (
             <div
-              key={course.id}
+              key={course._id}
               className="bg-black/30 backdrop-blur-md border border-blue-800/30 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300"
             >
+              {/* Use default image if none */}
               <img
-                src={course.image}
-                alt={course.title}
+                src={course.image_url || "https://via.placeholder.com/400x200.png?text=Course+Image"}
+                alt={course.course_name}
                 className="w-full h-48 object-cover"
               />
               <div className="p-6">
                 <div className="flex items-center justify-between mb-2">
                   <span className="bg-orange-500/20 text-orange-400 px-2 py-1 rounded text-xs font-medium">
-                    {course.level}
+                    {course.level || "Beginner"}
                   </span>
-                  <span className="text-2xl font-bold text-orange-500">{course.price}</span>
+                  <span className="text-2xl font-bold text-orange-500">
+                    ₹{course.price}
+                  </span>
                 </div>
-                
-                <h3 className="text-xl font-bold text-white mb-2">{course.title}</h3>
+
+                <h3 className="text-xl font-bold text-white mb-2">{course.course_name}</h3>
                 <p className="text-gray-300 mb-4">by {course.instructor}</p>
-                
+
                 <div className="flex items-center justify-between text-sm text-gray-400 mb-4">
                   <div className="flex items-center space-x-1">
                     <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                    <span>{course.rating}</span>
+                    <span>{course.rating || 4.5}</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     <Users className="h-4 w-4" />
-                    <span>{course.students.toLocaleString()}</span>
+                    <span>{course.students?.toLocaleString() || 0}</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     <Clock className="h-4 w-4" />
-                    <span>{course.duration}</span>
+                    <span>{course.duration || "N/A"}</span>
                   </div>
                 </div>
-                
-                <button className="w-full py-3 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-colors duration-200">
+
+                <button 
+                onClick={() => navigate(`/course/${course._id}`)}
+                className="w-full py-3 bg-orange-500 text-white rounded-lg font-medium hover:bg-orange-600 transition-colors duration-200">
                   Enroll Now
                 </button>
               </div>
@@ -187,7 +135,8 @@ const Courses = () => {
           ))}
         </div>
 
-        {filteredCourses.length === 0 && (
+        {/* Empty State */}
+        {filteredCourses.length === 0 && !loading && (
           <div className="text-center py-12">
             <BookOpen className="h-16 w-16 text-gray-500 mx-auto mb-4" />
             <h3 className="text-xl font-medium text-gray-400 mb-2">No courses found</h3>

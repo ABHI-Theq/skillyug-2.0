@@ -43,6 +43,8 @@ const DBConnect_1 = __importDefault(require("./utils/DBConnect"));
 const razorpay_1 = __importDefault(require("razorpay"));
 const paymentRouter_1 = __importDefault(require("./router/paymentRouter"));
 const cors_1 = __importDefault(require("cors"));
+const CourseRouter_1 = __importDefault(require("./router/CourseRouter"));
+const userPurchasesRoutes_1 = __importDefault(require("./router/userPurchasesRoutes"));
 dotenv_1.default.config();
 (0, DBConnect_1.default)();
 exports.instance = new razorpay_1.default({
@@ -55,6 +57,8 @@ app.use((0, cors_1.default)());
 app.use((0, express_1.urlencoded)({ extended: true }));
 app.use(express_1.default.static("public"));
 app.use("/api", paymentRouter_1.default);
+app.use("/api/courses", CourseRouter_1.default);
+app.use("/api/purchase", userPurchasesRoutes_1.default);
 app.get('/api/getKey', (req, res) => {
     // Ensure the environment variable is loaded
     if (!process.env.RAZORPAY_KEY) {

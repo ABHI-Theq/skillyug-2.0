@@ -21,6 +21,7 @@ import ResetPasswordRedirect from "./pages/ResetPasswordRedirect";
 import DashboardSelector from "./components/DashboardSelector";
 import DemoCoursePage from "./pages/DemoCoursePage";
 import PaymentSuccess from "./pages/paymentSuccess";
+import CourseDetail from "./pages/CourseDetail";
 
 function App() {
   return (
@@ -33,9 +34,14 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<SignupForm />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/demo-course" element={<DemoCoursePage />} />
+            {/* <Route path="/demo-course" element={<DemoCoursePage />} /> */}
             <Route path="/paymentsuccess" element={<PaymentSuccess />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/course/:id" element={
+              <ProtectedRoute>
+                <CourseDetail />
+              </ProtectedRoute>
+              } />
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route
               path="/auth/reset-password"
