@@ -9,6 +9,7 @@ import { useAuth } from "../hooks/AuthContext";
 function CourseDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  
   const { getCourseById, loading, error } = useCourse();
   const { checkPurchaseStatus } = usePurchase();
 
@@ -109,7 +110,7 @@ function CourseDetail() {
 
               {purchased ? (
                 <button
-                  onClick={() => navigate(`/mycourses/${course._id}`)}
+                  onClick={() => navigate(`/courses/${course._id}`)}
                   className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold py-4 px-6 rounded-xl mt-6 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   Go to Course

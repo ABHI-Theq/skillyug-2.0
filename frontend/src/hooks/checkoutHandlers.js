@@ -1,10 +1,11 @@
 import axios from "axios";
-export  const checkoutHandler = async (amount) => {
+export  const checkoutHandler = async (amount,courseId) => {
         try {
             const { data: { key } } = await axios.get("http://localhost:5000/api/getkey");
 
             const { data: { order } } = await axios.post("http://localhost:5000/api/checkout", {
-                amount
+                amount,
+                courseId
             });
             console.log(order);
             
