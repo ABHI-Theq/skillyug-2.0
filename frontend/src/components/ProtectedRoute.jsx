@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import {useAuth} from '../hooks/AuthContext';
+import toast from 'react-hot-toast';
 
 
 const ProtectedRoute = ({ children }) => {
@@ -14,6 +15,7 @@ const ProtectedRoute = ({ children }) => {
   }
 
   if (!user) {
+    toast.error("Please login to access this page");
     return <Navigate to="/" replace />;
   }
 

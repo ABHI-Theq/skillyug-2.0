@@ -7,9 +7,9 @@
     "prebuild": "eslint . --ext .js,.ts,.tsx",
     "build": "tsc",
     "watch": "tsc -w",
-    "prestart": "npm run build",
+    "prestart": "pnpm run build",
     "start": "nodemon ./dist/index.js",
-    "dev": "npx concurrently --kill-others \"npm run watch\" \"npm start\""
+    "dev": "npx concurrently --kill-others \"pnpm run watch\" \"pnpm start\""
   },
   "keywords": [],
   "author": "",
