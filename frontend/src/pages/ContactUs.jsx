@@ -13,7 +13,7 @@ const ContactUs = () => {
                     <h1 className="text-4xl font-bold mb-3">Let’s Get In Touch</h1>
                     <p className="text-sm">
                         or just reach out manually to{" "}
-                        <span className="text-orange-400">contactskill@gmail.com</span>
+                        <span className="text-orange-400 cursor-pointer">contact@skillyug.site</span>
                     </p>
                 </div>
 

@@ -38,7 +38,7 @@ function App() {
             <Route path="/paymentsuccess" element={<PaymentSuccess />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/course/:id" element={
-              <ProtectedRoute><CourseDetail /></ProtectedRoute>
+              <CourseDetail />
                 
               } />
             <Route path="/auth/callback" element={<AuthCallback />} />
