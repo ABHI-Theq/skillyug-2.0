@@ -20,9 +20,7 @@ scan:
   mode: full
   include:
     # Frontend files (React, Vue, Angular, etc.)
-    - "frontend/src/**/*"
     - "[Ff]rontend/src/**/*"
-    - "backend/src/**/*"
     - "[Bb]ackend/src/**/*"
     # Configuration files
     - "frontend/package.json"
