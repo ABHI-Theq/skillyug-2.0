@@ -82,7 +82,7 @@ export const paymentVerification = async (req: Request, res: Response) => {
 
       // redirect to frontend with reference
       return res.redirect(
-        `http://localhost:5173/paymentsuccess?reference=${razorpay_payment_id}&courseId=${courseId}`
+        `https://skillyug-2-0.vercel.app/paymentsuccess?reference=${razorpay_payment_id}&courseId=${courseId}`
       );
     } else {
       return res.status(400).json({

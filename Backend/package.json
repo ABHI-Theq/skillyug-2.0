@@ -2,15 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "prebuild": "eslint . --ext .js,.ts,.tsx",
     "build": "tsc",
     "watch": "tsc -w",
     "prestart": "pnpm run build",
     "start": "nodemon ./dist/index.js",
-    "dev": "npx concurrently --kill-others \"pnpm run watch\" \"pnpm start\"",
-    "sonar": "sonar-scanner"
+    "dev": "pnpm dlx concurrently --kill-others \"pnpm run watch\" \"pnpm start\""
   },
   "keywords": [],
   "author": "",
