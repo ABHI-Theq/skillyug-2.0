@@ -241,7 +241,7 @@ export const AuthProvider = ({ children }) => {
             full_name: fullName,
             user_type: userType,
           },
-          emailRedirectTo: `skillyug-zeta.vercel.app/auth/callback`
+          emailRedirectTo: `https://skillyug-2-0.vercel.app/auth/callback`
         }
       })
 

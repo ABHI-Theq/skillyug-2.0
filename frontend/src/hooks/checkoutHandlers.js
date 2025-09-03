@@ -1,9 +1,9 @@
 import axios from "axios";
 export  const checkoutHandler = async (amount,courseId) => {
         try {
-            const { data: { key } } = await axios.get("http://localhost:5000/api/getkey");
+            const { data: { key } } = await axios.get("https://skillyug-2-0-z3rg.vercel.app/api/getkey");
 
-            const { data: { order } } = await axios.post("http://localhost:5000/api/checkout", {
+            const { data: { order } } = await axios.post("https://skillyug-2-0-z3rg.vercel.app/api/checkout", {
                 amount,
                 courseId
             });
@@ -18,7 +18,7 @@ export  const checkoutHandler = async (amount,courseId) => {
                 description: "RazorPay Integration",
                 image: "https://avatars.githubusercontent.com/u/25058652?v=4",
                 order_id: order.id,
-                callback_url: "http://localhost:5000/api/paymentverification",   ///replace with backend url
+                callback_url: "https://skillyug-2-0-z3rg.vercel.app/api/paymentverification",   ///replace with backend url
                 prefill: {
                     name: "Gaurav Kumar",           //replace with the user name paying
                     email: "gaurav.kumar@example.com",  //replace with the user email

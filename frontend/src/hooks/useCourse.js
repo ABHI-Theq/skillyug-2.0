@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/courses"; // change if deployed
+const API_URL = "https://skillyug-2-0-z3rg.vercel.app/api/courses"; // change if deployed
 
 export default function useCourse() {
   const [courses, setCourses] = useState([]);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/purchase";
+const API_URL = "https://skillyug-2-0-z3rg.vercel.app/api/purchase";
 
 export default function usePurchase() {
   const [loading, setLoading] = useState(false);
