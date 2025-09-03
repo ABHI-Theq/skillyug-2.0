@@ -46,8 +46,10 @@ export const checkout = async (req: Request, res: Response) => {
 // ✅ Payment Verification Controller
 export const paymentVerification = async (req: Request, res: Response) => {
   try {
-    const { razorpay_payment_id, razorpay_order_id, razorpay_signature, courseId } =
+    const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
       req.body;
+      const courseId = req.query.courseId as string;  // explicitly assert
+
 
     if (!razorpay_payment_id || !razorpay_order_id || !razorpay_signature) {
       return res.status(400).json({
