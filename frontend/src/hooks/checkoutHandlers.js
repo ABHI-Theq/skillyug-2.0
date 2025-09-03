@@ -18,7 +18,7 @@ export  const checkoutHandler = async (amount,courseId) => {
                 description: "RazorPay Integration",
                 image: "https://avatars.githubusercontent.com/u/25058652?v=4",
                 order_id: order.id,
-                callback_url: "https://skillyug-2-0-backend.onrender.com/api/paymentverification",   ///replace with backend url
+                callback_url: `https://skillyug-2-0-backend.onrender.com/api/paymentverification?courseId=${courseId}`,   ///replace with backend url
                 prefill: {
                     name: "Gaurav Kumar",           //replace with the user name paying
                     email: "gaurav.kumar@example.com",  //replace with the user email
