@@ -32,7 +32,7 @@ app.get('/api/getKey', (req, res) => {
 });
 app.get("/",(_,res:Response)=>{
     console.log("Backend is up");
-    
+    return;  
 })
 // app.listen(process.env.PORT || 5000,()=>{
 //     console.log(`server is running on port ${process.env.PORT}`)
