@@ -21,21 +21,9 @@ scan:
   include:
     # Frontend files (React, Vue, Angular, etc.)
     - "frontend/src/**/*"
-    - "frontend/components/**/*"
-    - "frontend/utils/**/*"
-    - "frontend/hooks/**/*"
-    - "frontend/lib/**/*"
-    - "frontend/app/**/*"
-    
-    # Backend files (Node.js, Python, etc.)
+    - "[Ff]rontend/src/**/*"
     - "backend/src/**/*"
-    - "backend/routes/**/*"
-    - "backend/controllers/**/*"
-    - "backend/models/**/*"
-    - "backend/utils/**/*"
-    - "backend/lib/**/*"
-    - "backend/middleware/**/*"
-    
+    - "[Bb]ackend/src/**/*"
     # Configuration files
     - "frontend/package.json"
     - "backend/package.json"
