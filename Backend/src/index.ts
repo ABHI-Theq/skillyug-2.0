@@ -31,12 +31,12 @@ app.get('/api/getKey', (req, res) => {
     res.status(200).json({ key: process.env.RAZORPAY_KEY });
 });
 app.get("/",(req,res:Response)=>{
-    console.log("Backend is up");
+    console.log("Backend is up",req.body);
     res.sendFile("<h1>Backend is up</h1>")
     return;  
 })
-// app.listen(process.env.PORT || 5000,()=>{
-//     console.log(`server is running on port ${process.env.PORT}`)
-// })
+app.listen(process.env.PORT || 5000,()=>{
+    console.log(`server is running on port ${process.env.PORT}`)
+})
 
 export default app
