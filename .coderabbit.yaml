@@ -1,0 +1,73 @@
+version: 1
+
+# Enable all analysis types
+rules:
+  - type: security
+    enabled: true
+  - type: performance
+    enabled: true
+  - type: best-practices
+    enabled: true
+  - type: documentation
+    enabled: true
+  - type: testing
+    enabled: true
+  - type: code-style
+    enabled: true
+
+# CRITICAL: Full codebase scan configuration
+scan:
+  mode: full
+  include:
+    # Frontend files (React, Vue, Angular, etc.)
+    - "[Ff]rontend/src/**/*"
+    - "[Bb]ackend/src/**/*"
+    # Configuration files
+    - "[Ff]rontend/package.json"
+    - "[Bb]backend/package.json"
+    - "*.json"
+    - "*.yaml"
+    - "*.yml"
+    - "*.js"
+    - "*.ts"
+    - "*.jsx"
+    - "*.tsx"
+    - "*.py"
+    - "*.java"
+    - "Dockerfile"
+    - "docker-compose.yml"
+
+  # Exclude unnecessary files
+  exclude:
+    - "**/node_modules/**"
+    - "**/dist/**"
+    - "**/build/**"
+    - "**/.next/**"
+    - "**/out/**"
+    - "**/.venv/**"
+    - "**/__pycache__/**"
+    - "**/*.log"
+    - "**/.env*"
+    - "**/.git/**"
+    - "**/coverage/**"
+    - "**/*.min.js"
+    - "**/*.min.css"
+    - "**/vendor/**"
+
+# Optional: Language-specific settings
+languages:
+  javascript:
+    framework: react # or vue, angular, node, etc.
+    version: "18"
+  typescript:
+    strict: true
+  python:
+    version: "3.9"
+    style: pep8
+
+# Report settings
+output:
+  format: detailed
+  include-summary: true
+  include-suggestions: true
+  export-formats: [json, md]
