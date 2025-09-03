@@ -32,6 +32,7 @@ app.get('/api/getKey', (req, res) => {
 });
 app.get("/",(_,res:Response)=>{
     console.log("Backend is up");
+    res.sendFile("<h1>Backend is up</h1>")
     return;  
 })
 // app.listen(process.env.PORT || 5000,()=>{
