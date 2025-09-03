@@ -35,7 +35,7 @@ function useAuth() {
   const fetchProfile = async (userId) => {
     try {
       const { data, error } = await supabase
-        .from("profiles")
+        .from("user_profiles")
         .select("*")
         .eq("id", userId)
         .single();
@@ -105,7 +105,7 @@ function useAuth() {
 
     // Check if profile exists and is verified
     const { data: profileData, error: profileError } = await supabase
-      .from("profiles")
+      .from("user_profiles")
       .select("emailVerified, role")
       .eq("id", data.user.id)
       .single();
@@ -131,7 +131,7 @@ function useAuth() {
     if (!user) return;
 
     const { data, error } = await supabase
-      .from("profiles")
+      .from("user_profiles")
       .update({ ...updates, updated_at: new Date().toISOString() })
       .eq("id", user.id)
       .select()
@@ -151,7 +151,7 @@ function useAuth() {
   ) => {
     // Update profile to set emailVerified: true
     const { error } = await supabase
-      .from("profiles")
+      .from("user_profiles")
       .update({ emailVerified: true })
       .eq("id", userId);
     if (error) {

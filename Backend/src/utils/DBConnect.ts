@@ -6,7 +6,8 @@ const DBConnect=async ()=>{
             dbName:"skillyug"
         })
 
-        console.log("DB Connected Successfully")
+
+        console.log(conn,"DB Connected Successfully")
     } catch (error: unknown) {
         const errorMessage=error instanceof Error?error.message:"DB Connection Failed"
         console.log("Error: ",errorMessage)
