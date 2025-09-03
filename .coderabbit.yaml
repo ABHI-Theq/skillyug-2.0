@@ -23,8 +23,8 @@ scan:
     - "[Ff]rontend/src/**/*"
     - "[Bb]ackend/src/**/*"
     # Configuration files
-    - "frontend/package.json"
-    - "backend/package.json"
+    - "[Ff]rontend/package.json"
+    - "[Bb]backend/package.json"
     - "*.json"
     - "*.yaml"
     - "*.yml"
