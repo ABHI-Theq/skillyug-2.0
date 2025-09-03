@@ -30,7 +30,7 @@ app.get('/api/getKey', (req, res) => {
     }
     res.status(200).json({ key: process.env.RAZORPAY_KEY });
 });
-app.get("/",(_,res:Response)=>{
+app.get("/",(req,res:Response)=>{
     console.log("Backend is up");
     res.sendFile("<h1>Backend is up</h1>")
     return;  
