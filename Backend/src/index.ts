@@ -1,4 +1,4 @@
-import express, { urlencoded } from "express"
+import express, { Response, urlencoded } from "express"
 import dotenv from "dotenv"
 import DBConnect from "./utils/DBConnect"
 import Razorpay from "razorpay"
@@ -30,6 +30,10 @@ app.get('/api/getKey', (req, res) => {
     }
     res.status(200).json({ key: process.env.RAZORPAY_KEY });
 });
+app.get("/",(_,res:Response)=>{
+    console.log("Backend is up");
+    
+})
 // app.listen(process.env.PORT || 5000,()=>{
 //     console.log(`server is running on port ${process.env.PORT}`)
 // })
